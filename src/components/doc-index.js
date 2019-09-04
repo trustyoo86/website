@@ -11,8 +11,6 @@ export default function DocIndex(props) {
     }
   });
 
-  console.log(index);
-
   return (
     <ul>
       {index.map((v, i) => {

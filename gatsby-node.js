@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const VERSION_REGEX = /^v(\d|.)+/g;
+const VERSION_REGEX = /^v(\d|.)+/;
 const docsFolder = path.join(__dirname, './docs');
 
 function generateDocPath(fileLocation) {
@@ -22,7 +22,6 @@ function generateTitle(filename) {
     .replace('.md', '');
 }
 
-let indexCache = {};
 function findVersionFolder(cwd) {
   if (cwd === path.dirname(cwd)) throw new Error('Reached root!');
 
@@ -56,7 +55,21 @@ function generateIndex(cwd) {
   });
 }
 
-function getIndex(cwd) {
+function generateLanguageIndex() {
+  let dirContent = fs.readdirSync(docsFolder);
+
+  return dirContent.map(i => {
+    let absPath = path.join(docsFolder, i);
+
+    if (!fs.statSync(absPath).isDirectory()) return;
+    return {
+      lang: i,
+      versions: fs.readdirSync(absPath).filter(v => VERSION_REGEX.test(v))
+    };
+  });
+}
+
+function getIndex(cwd, indexCache = {}) {
   let docsRoot = findVersionFolder(cwd);
 
   if (!indexCache[docsRoot]) {
@@ -91,10 +104,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
+  let langIndex = generateLanguageIndex();
+  let indexCache = {};
   let templateLocation = path.resolve('src/templates/doc-template.js');
   queryResult.data.allMarkdownRemark.edges.forEach(({ node }) => {
     let p = generateDocPath(node.fileAbsolutePath);
-    let index = getIndex(node.fileAbsolutePath);
+    let index = getIndex(path.dirname(node.fileAbsolutePath), indexCache);
 
     createPage({
       path: p,
@@ -102,7 +117,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         html: node.html,
         title: generateTitle(path.basename(node.fileAbsolutePath)),
-        index
+        index,
+        langIndex
       }
     });
   });

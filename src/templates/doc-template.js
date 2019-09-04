@@ -10,7 +10,9 @@ import '../styles/pilcrow.css';
 
 export default function Template(props) {
   let { path, pageContext } = props;
-  let { html, title, index } = pageContext;
+  let { html, title, index, langIndex } = pageContext;
+
+  console.log(langIndex);
 
   return (
     <>
