@@ -63,10 +63,10 @@ const DocHeader = () => {
             </option>
           </select>
         </form>
-        <a href="https://github.com/parcel-bundler/parcel" target="_blank">
+        <a href="https://github.com/parcel-bundler/parcel" target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
-        <a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank">
+        <a href="https://cottonbureau.com/products/parcel-t-shirt" target="_blank" rel="noopener noreferrer">
           👕 Store
         </a>
       </div>
@@ -75,7 +75,8 @@ const DocHeader = () => {
 };
 
 export default function Template(props) {
-  let { html, title } = props.pageContext;
+  let { path, pageContext } = props;
+  let { html, title } = pageContext;
 
   return (
     <>
@@ -263,12 +264,9 @@ export default function Template(props) {
 
           <h2>Help us improve the docs</h2>
           <p>
-            If something is missing or not entirely clear, please
-            <a href="https://github.com/parcel-bundler/website/issues">file an issue on the website repository</a> or
-            <a href="https://github.com/parcel-bundler/website/edit/master/src/i18n/{{language}}/docs/{{relative}}">
-              edit this page
-            </a>
-            .
+            If something is missing or not entirely clear, please{' '}
+            <a href={`https://github.com/parcel-bundler/website/edit/master${path}.md`}>edit this page</a> or{' '}
+            <a href="https://github.com/parcel-bundler/website/issues">file an issue</a>.
           </p>
         </main>
       </div>

@@ -2,7 +2,8 @@ module.exports = {
   siteMetadata: {
     title: 'Parcel ',
     description: 'Blazing fast, zero configuration web application bundler.',
-    author: '@parceljs'
+    author: '@parceljs',
+    defaultVersion: 'v1'
   },
   plugins: [
     'gatsby-plugin-react-helmet',

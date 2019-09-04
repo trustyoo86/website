@@ -1,17 +1,3 @@
 {
-  "alias": [
-    "parceljs.org",
-    "en.parceljs.org",
-    "es.parceljs.org",
-    "fr.parceljs.org",
-    "it.parceljs.org",
-    "ja.parceljs.org",
-    "ko.parceljs.org",
-    "pl.parceljs.org",
-    "pt.parceljs.org",
-    "ru.parceljs.org",
-    "zh.parceljs.org",
-    "uk.parceljs.org",
-    "zh-tw.parceljs.org"
-  ]
+  "alias": ["parceljs.org"]
 }

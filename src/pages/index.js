@@ -1,13 +1,12 @@
 import React from 'react';
 
-import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 const IndexPage = () => (
-  <Layout>
+  <>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-  </Layout>
+    <a href="/docs/en/v2/getting_started">Get Started</a>
+  </>
 );
 
 export default IndexPage;
