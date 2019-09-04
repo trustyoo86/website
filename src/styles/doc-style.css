@@ -98,31 +98,37 @@ header .links a:hover {
 }
 
 .search-input {
-  display: inline-block;
-  padding: 2px 8px;
-  width: 90px;
-  border: none;
-  border-radius: 50px;
+  display: block;
   font-family: 'Gill Sans', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: inherit;
-  margin: 0 20px;
-  transition: all 250ms;
-  background: rgba(255, 255, 255, 0);
-  color: #e7dacb;
+  padding: 5px 10px;
+  width: calc(100% - 20px);
+  border: 1px solid #eee;
+  border-radius: 5px;
+  background-color: #edf2f7;
+  color: #000000;
+  margin-bottom: 40px;
+  transition: all 0.1s ease-in;
+}
+
+.search-input:focus,
+.search-input:hover {
+  background-color: #ffffff;
+  outline: none;
 }
 
 .search-input::placeholder {
-  color: #e7dacb;
+  color: #718096;
 }
 
-.search-input:hover {
-  background: rgba(255, 255, 255, 0.1);
+.doc-index-title {
+  cursor: pointer;
 }
 
-.search-input:focus {
-  width: 200px;
-  background: rgba(255, 255, 255, 0.2);
-  outline: none;
+.doc-index-chevron {
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
 }
 
 nav {

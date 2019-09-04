@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './doc-index.css';
-
 const ChevronDown = () => {
   return (
     <svg
@@ -57,7 +55,7 @@ export default function DocIndex(props) {
   return (
     <ul>
       {title && (
-        <li className="index-title" onClick={() => setShowContent(!showContent)}>
+        <li className="doc-index-title" onClick={() => setShowContent(!showContent)}>
           <h3>
             {showContent ? <ChevronDown /> : <ChevronRight />}
             {title}

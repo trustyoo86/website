@@ -3,7 +3,41 @@ import React from 'react';
 import logo from '../images/logo.svg';
 import icon from '../images/parcel-icon.png';
 
-export default function DocHeader() {
+function VersionDropdown(props) {
+  let { versions, onChange } = props;
+
+  return (
+    <select className="language-dropdown" onChange={onChange} style={{ marginRight: 20 }}>
+      {versions.map(v => {
+        return (
+          <option value={v.value} selected={!!v.selected} key={v.value}>
+            {v.value.replace('v', 'V ')}
+          </option>
+        );
+      })}
+    </select>
+  );
+}
+
+export default function DocHeader(props) {
+  let { langIndex } = props;
+
+  const handeLangChange = () => {
+    // "location = this.options[this.selectedIndex].value + location.pathname;"
+  };
+
+  const handeVersionChange = () => {};
+
+  let versions = [
+    {
+      value: 'v1',
+      selected: true
+    },
+    {
+      value: 'v2'
+    }
+  ];
+
   return (
     <header>
       <a className="logo" href="/">
@@ -11,12 +45,9 @@ export default function DocHeader() {
         <img className="type" src={logo} alt="Parcel" />
       </a>
       <div className="links">
-        <input type="text" id="search-input" className="search-input" placeholder="Search..." />
+        <VersionDropdown versions={versions} onChange={handeVersionChange} />
         <form className="languages">
-          <select
-            className="language-dropdown"
-            onChange="location = this.options[this.selectedIndex].value + location.pathname;"
-          >
+          <select className="language-dropdown" onChange={handeLangChange}>
             <option className="en" value="https://en.parceljs.org" selected>
               English
             </option>

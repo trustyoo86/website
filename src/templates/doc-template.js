@@ -12,14 +12,13 @@ export default function Template(props) {
   let { path, pageContext } = props;
   let { html, title, index, langIndex } = pageContext;
 
-  console.log(langIndex);
-
   return (
     <>
       <SEO title={title} />
-      <DocHeader />
+      <DocHeader langIndex={langIndex} />
       <div className="content">
         <nav>
+          <input type="text" id="search-input" className="search-input" placeholder="Search..." />
           <DocIndex index={index} />
         </nav>
         <main>
